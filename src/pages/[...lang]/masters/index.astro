@@ -1,0 +1,71 @@
+---
+import Table from "../../../layouts/shortcodes/Table.tsx";
+import {
+  AllMasters,
+  CnMasters,
+  AllSectMasters,
+  InMasters,
+  ViMasters,
+  JpMasters,
+} from "../../../db/masters/AllMasterDb.tsx";
+import { site } from "@/config/config.json";
+import '@/styles/table.css';
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import {
+  getLangFromUrl,
+  getTranslations,
+  supportedLang
+} from "@/lib/utils/languageParser";
+import PageHeader from "@/partials/PageHeader.astro";
+import type { ContentEntryMap } from "astro:content";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: {
+      lang: lang || undefined,
+    },
+  }));
+  return paths;
+}
+const { lang } = Astro.params || getLangFromUrl(Astro.url);
+
+const postIndex = await getListPage(
+  "masters",
+  lang as keyof ContentEntryMap
+);
+const posts = await getSinglePage("masters", lang as keyof ContentEntryMap);
+const {
+  in_masters, cn_masters, vi_masters, jp_masters, level_, level__,
+} = await getTranslations(lang as keyof ContentEntryMap);
+---
+
+<Base
+  title={ site.title + ' - Masters' }
+  meta_title={ site.meta_title + ' - Masters' }
+  description={ site.meta_description + ' - Masters' }
+  image={'/images/meta-image-square-1.jpg'}
+>
+  <PageHeader title={"Zen Master"} />
+
+  <div class="container">
+    <h2>{ in_masters }</h2>
+    <Table client:load data={InMasters} lang={lang? lang : 'vi'} />
+  </div>
+
+  <div class="container">
+    <h2>{ cn_masters } - { level_ }</h2>
+    <Table client:load data={CnMasters[0]} lang={lang? lang : 'vi'}/>
+  </div>
+
+  {
+    CnMasters
+     ?.filter((master, index) => index!==0)
+     ?.map((CnMaster, CnMasterIndex) =>
+    <div class="container">
+      <h2>{ cn_masters } - { level__ } {CnMasterIndex+1}</h2>
+      <Table client:load data={CnMaster} lang={lang? lang : 'vi'}/>
+    </div>
+      )
+    }
+</Base>

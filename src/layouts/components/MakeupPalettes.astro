@@ -1,0 +1,111 @@
+---
+import "../../styles/additional/MakeupPalettes.scss"
+
+const { quantity } = Astro.props;
+let schools = [];
+if(quantity === 2) {
+  schools = [
+    {
+      slug: '/lin-ji-zong/huang-long-pai',
+      name: 'Hoàng long',
+      class: 'six',
+    },  {
+      slug: '/lin-ji-zong/yang-qi-pai',
+      name: 'Dương kì',
+      class: 'seven',
+    },
+  ];
+} else if(quantity === 7) {
+  schools = [
+    {
+      slug: '/lin-ji-zong',
+      name: 'Lâm tế',
+      class: 'one',
+    },  {
+      slug: '/cao-dong-zong',
+      name: 'Tào động',
+      class: 'two',
+    },  {
+      slug: '/fa-yan-zong',
+      name: 'Pháp nhãn',
+      class: 'three',
+    },  {
+      slug: '/gui-yang-zong',
+      name: 'Qui ngưỡng',
+      class: 'four',
+    },  {
+      slug: '/yun-men-zong',
+      name: 'Vân môn',
+      class: 'five',
+    },  {
+      slug: '/lin-ji-zong/huang-long-pai',
+      name: 'Hoàng long',
+      class: 'six',
+    },  {
+      slug: '/lin-ji-zong/yang-qi-pai',
+      name: 'Dương kì',
+      class: 'seven',
+    },
+  ];
+} else {
+  schools = [
+    {
+      slug: '/lin-ji-zong',
+      name: 'Lâm tế',
+      class: 'one',
+    },  {
+      slug: '/cao-dong-zong',
+      name: 'Tào động',
+      class: 'two',
+    },  {
+      slug: '/fa-yan-zong',
+      name: 'Pháp nhãn',
+      class: 'three',
+    },  {
+      slug: '/gui-yang-zong',
+      name: 'Qui ngưỡng',
+      class: 'four',
+    },  {
+      slug: '/yun-men-zong',
+      name: 'Vân môn',
+      class: 'five',
+    },
+  ];
+}
+---
+
+<div class="main-content">
+  {
+    schools?.map(school => (
+      <div class="palette__wrapper">
+        <div class={`palette palette--${school.class}`}>
+          <div class="palette__cover">
+            <div class="palette__cover__border">
+              <span class="title">{school.name}</span>
+            </div>
+          </div>
+          <div class="palette__cover__top"></div>
+          <div class="palette__base">
+            <div class="palette__shade"></div>
+            <div class="palette__shade"></div>
+            <div class="palette__shade"></div>
+            <div class="palette__shade"></div>
+            <div class="palette__shade"></div>
+
+            <div></div>
+            <div>
+              {
+                school.class === 'one'
+                  ? <a style="color: yellow" href="/zen-schools/lin-ji-zong/huang-long-pai" title={`👉 Huang Long Pai`}>🐉</a>
+                    <a href="/zen-schools/lin-ji-zong/yang-qi-pai" title={`👉 Yang Qi Pai`}>🚩</a>
+                    <a href={`/zen-schools${school.slug}`} title={`👉 ${school.name}`}>⏰</a>
+
+                  : <a style="float: right" href={`/zen-schools${school.slug}`} title={`👉 ${school.name}`}>⏰</a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

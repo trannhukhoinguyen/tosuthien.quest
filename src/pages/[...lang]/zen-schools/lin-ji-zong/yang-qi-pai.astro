@@ -1,0 +1,19 @@
+---
+import Base from "../../../../layouts/Base.astro";
+import { supportedLang } from "../../../../lib/utils/languageParser";
+import PeriodicTable from "../../../../layouts/components/PeriodicTable.astro";
+import sectDb from "../../../../db/sectDb.tsx";
+import { CnYangqiMasters } from "../../../../db/masters/AllMasterDb.tsx";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+const { lang } = Astro.params;
+---
+
+<Base>
+  <PeriodicTable sect={ sectDb.find(sect=> sect.label === 'Yangqi') } mastersDb={ CnYangqiMasters } />
+</Base>

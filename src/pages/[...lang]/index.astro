@@ -1,0 +1,52 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { supportedLang, getTranslations } from "@/lib/utils/languageParser";
+import HuaTou from "@/layouts/partials/Huatou.astro";
+import faqHome from "@/layouts/partials/faqHome.astro";
+import type { ContentEntryMap } from "astro:content";
+import SevenThingsLeftBehind from "@/layouts/components/SevenThingsLeftBehind.astro"
+import { site } from "@/config/config.json";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+const huatou = await getSinglePage(
+  "sections",
+  lang as keyof ContentEntryMap,
+  "huatou"
+);
+const faqHome = await getSinglePage(
+  "sections",
+  lang as keyof ContentEntryMap,
+  "faqHome"
+);
+const {
+  severe_problem,
+  tomorrow_death,
+  after_cremated_nature,
+  after_death
+} = await getTranslations(lang as keyof ContentEntryMap);
+---
+
+<Base
+  title={site.title}
+  meta_title={site.meta_title}
+  description={site.meta_description}
+  image={site.meta_image}
+>
+  <div style="text-align: center">
+    <h1>{severe_problem}</h1>
+    <h2>💀 {tomorrow_death} 💀</h2>
+    <h2>🔥{after_cremated_nature}🔥</h2>
+    <h2>🏴‍☠️ {after_death} 🏴‍☠️</h2>
+    <SevenThingsLeftBehind />
+  </div>
+  <faqHome faqHomes={faqHome[0]} />
+  <HuaTou huatous={huatou[0]} />
+</Base>

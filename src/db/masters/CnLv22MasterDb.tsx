@@ -1,0 +1,28 @@
+const CnLv22MasterDb = [
+  {
+    id: '55.22.1',
+    hasContent: true,
+    name_en: 'Gaofeng Yuanmiao',
+    name_es: 'Gaofeng Yuanmiao',
+    name_de: 'Gaofeng Yuanmiao',
+    name_fr: 'Gaofeng Yuanmiao',
+    name_vi: 'Cao Phong Nguyên Diệu',
+    name_ru: 'Gaofeng Yuanmiao',
+    name_zh: '高峰原妙',
+    name_ja: 'Kōhō Genmyō',
+    name_ko: 'Kobong Wŏnmyo',
+    name_ar: 'Gaofeng Yuanmiao',
+    birth_death_time: ['', ''],
+    records: '',
+    sect: ['Linji', 'Yangqi'],
+    country: 'China',
+    place: '-',
+    teachers: ['Xueyan Zuqin'],
+    successors: ['Zhongfeng Mingben'],
+    disciples: ['Zhongfeng Mingben'],
+    image: 'https://terebess.hu/zen/mesterek/woodcut/55.jpg',
+    reference: ['https://vi.wikipedia.org/wiki/Cao_Phong_Nguy%C3%AAn_Di%E1%BB%87u', 'https://terebess.hu/zen/mesterek/GaofengYuanmiao.html', 'http://www.thuongchieu.net/index.php/phapthoai/suphu/4171-tscaophongdieu'],
+    youtubeId: ['2eAlynd_JTE'],
+  },
+]
+export default CnLv22MasterDb;

@@ -1,0 +1,57 @@
+---
+import Base from "@/layouts/Base.astro";
+import { supportedLang } from "@/lib/utils/languageParser";
+import { site } from "@/config/config.json";
+import PageHeader from "../../layouts/partials/PageHeader.astro";
+
+export function getStaticPaths() {
+  const paths = supportedLang.map((lang) => ({
+    params: { lang: lang || undefined },
+  }));
+  return paths;
+}
+
+const { lang } = Astro.params;
+---
+
+  <Base
+    title={ site.title +!lang || lang === 'vi'? 'Tuyệt tác' : ' - Masterpieces' }
+    meta_title={ site.meta_title +!lang || lang === 'vi'? 'Tuyệt tác' : ' - Masterpieces' }
+    description={ site.meta_description +!lang || lang === 'vi'? 'Tuyệt tác' : ' - Masterpieces' }
+    image={'/images/meta-image-square-1.jpg'}
+  >
+  <PageHeader title={!lang || lang === 'vi'? 'Tuyệt tác' : 'Masterpieces' } />
+  <section class="section-sm">
+    <div class="container">
+
+    </div>
+  </section>
+  </Base>
+
+<style>
+  .marquee {
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee div {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    animation: marquee 15s linear infinite;
+  }
+  .marquee div:hover {
+    animation-play-state: paused;
+    cursor: pointer;
+  }
+  .marquee span {
+    float: left;
+  }
+  @keyframes marquee {
+    0% { bottom: 100%; }
+    25% { bottom: 75%; }
+    50% { bottom: 50%; }
+    75% { bottom: 25%; }
+    100% { bottom: 0; }
+  }
+</style>

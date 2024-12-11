@@ -1,0 +1,26 @@
+const CnLv20MasterDb = [
+  {
+    id: '53.20.1',
+    name_en: 'Wuzhun Shifan',
+    name_es: 'Wuzhun Shifan',
+    name_de: 'Wuzhun Shifan',
+    name_fr: 'Wuzhun Shifan',
+    name_vi: 'Vô Chuẩn Sư Phạm',
+    name_ru: 'Wuzhun Shifan',
+    name_zh: '無準師範 (Bushun Shihan)',
+    name_ja: 'Kōke Zonshō',
+    name_ko: 'Wuzhun Shifan',
+    name_ar: 'Wuzhun Shifan',
+    birth_death_time: ['1177', '1249'],
+    records: '',
+    sect: ['-'],
+    country: 'China',
+    place: '-',
+    teachers: ['Poan Zuxian'],
+    successors: [''],
+    disciples: ['Wuxue Zuyuan', 'Enni Benen', 'Xueyan Zuqin'],
+    image: '/images/avatar.png',
+    reference: ['https://vi.wikipedia.org/wiki/V%C3%B4_Chu%E1%BA%A9n_S%C6%B0_Ph%E1%BA%A1m',],
+  },
+]
+export default CnLv20MasterDb;
